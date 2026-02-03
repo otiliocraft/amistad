@@ -3,444 +3,443 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Maquillaje Bella</title>
-  <script src="https://cdn.tailwindcss.com"></script> 
+  <title>💌 Amigo Secreto en el Jardín</title>
   <style>
-    .hidden {
-      display: none;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .toast {
+
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #5a3d6b;
+      text-align: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      padding: 20px;
+    }
+
+    /* Cielo de fondo */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, #a2d9ff, #c2e9fb);
+      z-index: -3;
+    }
+
+    /* Pasto */
+    .grass {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 35%;
+      background: 
+        linear-gradient(to top, 
+          rgba(46, 160, 67, 0.95), 
+          rgba(76, 175, 80, 0.85)
+        );
+      z-index: -2;
+    }
+
+    /* Flores en el jardín */
+    .flower {
+      position: fixed;
+      bottom: 35%;
+      width: 24px;
+      height: 30px;
+      z-index: -1;
+    }
+
+    .flower::before,
+    .flower::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    /* Tallo */
+    .flower::before {
+      width: 6px;
+      height: 60px;
+      background: #4caf50;
+      top: -60px;
+      left: 9px;
+    }
+
+    /* Flor (pétalos) */
+    .flower::after {
+      width: 20px;
+      height: 20px;
+      background: #ff6b9d;
+      top: -70px;
+      left: 2px;
+      box-shadow:
+        20px 0 0 0 #ff8fab,
+        -20px 0 0 0 #ff8fab,
+        0 20px 0 0 #ffb3c6,
+        0 -20px 0 0 #ffb3c6;
+    }
+
+    /* Contenedor principal sobre el jardín */
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.93);
+      border-radius: 22px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      margin-top: 10px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Lluvia de pétalos */
+    .petal {
+      position: absolute;
+      top: -20px;
+      font-size: 18px;
+      opacity: 0.85;
+      user-select: none;
+      pointer-events: none;
+      z-index: 5;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(105vh) rotate(360deg);
+      }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 20px 0 15px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+      color: #d15ca0;
+    }
+
+    .music-btn {
       position: fixed;
       top: 20px;
       right: 20px;
-      background-color: #ec4899;
+      background: #ff7eb9;
       color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      box-shadow: 0 2 6 rgba(0,0,0,0.2);
-      z-index: 50;
-      animation: slideIn 0.3s ease forwards, fadeOut 2s ease-in 2s forwards;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      z-index: 100;
+      transition: transform 0.3s ease;
     }
-    @keyframes slideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+
+    .music-btn:hover {
+      transform: scale(1.1);
     }
-    @keyframes fadeOut {
-      to { opacity: 0; transform: translateX(100%); }
+
+    .friends {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 22px;
+      margin-top: 20px;
+    }
+
+    .friend-card {
+      background: white;
+      width: 160px;
+      padding: 18px;
+      border-radius: 18px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.35s ease;
+      cursor: pointer;
+      opacity: 0;
+      animation: popIn 0.6s forwards;
+    }
+
+    .friend-card:nth-child(1) { animation-delay: 0.1s; }
+    .friend-card:nth-child(2) { animation-delay: 0.25s; }
+    .friend-card:nth-child(3) { animation-delay: 0.4s; }
+    .friend-card:nth-child(4) { animation-delay: 0.55s; }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .friend-card:hover, .friend-card:active {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+    }
+
+    .friend-card h2 {
+      font-size: 1.3rem;
+      margin: 10px 0;
+      color: #ff6bb5;
+    }
+
+    .friend-card p {
+      font-size: 0.9rem;
+      color: #6b5b95;
+    }
+
+    .heart {
+      color: #ff6b9d;
+      font-size: 1.5rem;
+      margin: 8px 0;
+      display: block;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 200;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    .modal-content {
+      background: white;
+      margin: 8% auto;
+      padding: 25px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 550px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+      position: relative;
+      word-wrap: break-word;
+    }
+
+    .modal img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 15px;
+      border: 3px solid #ffd1dc;
+    }
+
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #ff7eb9;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #8a6d9e;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.0rem; }
+      .friend-card { width: 140px; padding: 15px; }
+      .modal-content { padding: 20px; margin: 12% auto; }
     }
   </style>
 </head>
-<body class="bg-white font-sans text-gray-800 antialiased">
+<body>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="hidden absolute z-50"></div>
+  <!-- Fondo de jardín -->
+  <div class="grass"></div>
+  <!-- Flores se generarán con JS abajo -->
 
-  <!-- Header -->
-  <header class="bg-white border-b">
-    <div class="max-w-6xl mx-auto px-4 py-6 text-center">
-      <h1 class="text-3xl md:text-4xl font-bold text-pink-700">Maquillaje <span class="text-gray-900">Bella</span></h1>
-    </div>
+  <!-- Botón de música -->
+  <button class="music-btn" id="musicToggle">♪</button>
 
-    <!-- Barra de navegación -->
-    <nav class="bg-pink-50 shadow-sm">
-      <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap justify-center gap-6 text-sm font-medium">
-        <button onclick="showSection('inicio')" class="transition text-gray-700 hover:text-pink-600">Inicio</button>
-        <button onclick="showSection('tienda')" class="transition text-gray-700 hover:text-pink-600">Tienda</button>
-        <button onclick="showSection('compras')" class="transition text-gray-700 hover:text-pink-600">Carrito</button>
-        <button onclick="showSection('favoritos')" class="transition text-gray-700 hover:text-pink-600">Favoritos</button>
-        <button onclick="showSection('ofertas')" class="transition text-gray-700 hover:text-pink-600">Ofertas</button>
-        <button onclick="showSection('saldo')" class="transition text-gray-700 hover:text-pink-600">Saldo</button>
+  <audio id="backgroundMusic" loop>
+    <source src="Low Quality Preview Gentle Inspire.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <h1>💌 Amistad en el Jardín 💕</h1>
+    <p>Haz clic en tu amiga para descubrir tu mensaje especial...</p>
+
+    <div class="friends">
+      <div class="friend-card" 
+           data-name="Natasha" 
+           data-msg="¡Valeria! Eres la luz en los días nublados. Gracias por tu paciencia y tu risa contagiosa. ¡Te quiero mucho! 💖"
+           data-img="https://via.placeholder.com/100/ff9ec9/ffffff?text=V">
+        <span class="heart">💗</span>
+        <h2>Natasha</h2>
+        <p>Corazón gigante</p>
       </div>
-    </nav>
-  </header>
-
-  <!-- Contenido Dinámico -->
-  <main class="min-h-screen">
-    <!-- Inicio -->
-    <section id="inicio" class="relative bg-gradient-to-br from-pink-50 via-purple-50 to-pink-100 overflow-hidden min-h-[60vh] flex items-center hidden">
-      <div class="absolute inset-0 opacity-10">
-        <img src="https://placehold.co/1600x800/ffe4e6/ffffff?text=Bella+Makeup" alt="Fondo decorativo" class="w-full h-full object-cover" />
+      <div class="friend-card" 
+           data-name="Camila" 
+           data-msg="¡Camila! Tu creatividad nos inspira a todas. Cada dibujo tuyo es un pedacito de magia. ¡Eres increíble! ✨"
+           data-img="https://via.placeholder.com/100/a0d8ff/ffffff?text=C">
+        <span class="heart">💗</span>
+        <h2>Camila</h2>
+        <p>Soñadora eterna</p>
       </div>
-      <div class="max-w-6xl mx-auto px-4 py-20 relative z-10 text-center md:text-left md:flex md:items-center">
-        <div class="md:w-1/2 mb-10 md:mb-0">
-          <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-            Realza tu belleza natural con <span class="text-pink-600">Bella</span>
-          </h2>
-          <p class="mt-4 text-lg text-gray-600 max-w-lg">
-            Descubre la colección premium creada por Yeimi, diseñada para realzar tu rostro con ingredientes naturales y una fórmula duradera.
-          </p>
-          <div class="mt-6 space-x-4">
-            <button onclick="showSection('tienda')" class="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
-              Ver Tienda
-            </button>
-            <button onclick="showSection('compras')" class="border border-pink-600 text-pink-600 hover:bg-pink-50 font-semibold py-3 px-6 rounded-lg shadow-md transition">
-              Ir al Carrito
-            </button>
-          </div>
-        </div>
-        <div class="md:w-1/2 flex justify-center">
-          <img src="https://placehold.co/500x600/fbcfe8/ffffff?text=Y+Makeup" alt="Producto Bella" class="rounded-xl shadow-2xl w-64 md:w-80 hover:rotate-1 hover:shadow-3xl transition duration-500"/>
-        </div>
+      <div class="friend-card" 
+           data-name="Sofía" 
+           data-msg="¡Sofía! Fuerte como una roca y dulce como el algodón de azúcar. Contigo, todo es posible. ¡Gracias por estar! 🌈"
+           data-img="https://via.placeholder.com/100/c9b3ff/ffffff?text=S">
+        <span class="heart">💗</span>
+        <h2>Sofía</h2>
+        <p>Aventurera leal</p>
       </div>
-    </section>
-
-    <!-- Tienda -->
-    <section id="tienda" class="py-20 bg-white hidden">
-      <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Nuestra Colección</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-list">
-          <!-- Los productos se generan dinámicamente -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Compras (Carrito) -->
-    <section id="compras" class="py-20 bg-gray-50 hidden">
-      <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Tu Carrito de Compras</h2>
-        <div id="cart-content" class="bg-white p-6 rounded-xl shadow-md space-y-4">
-          <p class="text-center text-gray-500">Tu carrito está vacío</p>
-        </div>
-        <div id="cart-summary" class="mt-6 flex flex-col sm:flex-row justify-between items-center hidden">
-          <button onclick="clearCart()" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-6 py-2 rounded-lg w-full sm:w-auto mb-3 sm:mb-0">
-            Eliminar Todo
-          </button>
-          <button onclick="handleBuy()" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg w-full sm:w-auto flex justify-center items-center space-x-2">
-            <span>Comprar</span>
-            <span id="total-display" class="bg-white text-pink-600 font-bold px-3 py-1 rounded-full text-sm"></span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Favoritos -->
-    <section id="favoritos" class="py-20 bg-white hidden">
-      <div class="max-w-6xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold text-gray-900 mb-10">Tus Productos Favoritos</h2>
-        <div id="favorites-content" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10"></div>
-      </div>
-    </section>
-
-    <!-- Ofertas -->
-    <section id="ofertas" class="py-20 bg-gray-50 hidden">
-      <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">Ofertas Especiales</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="bg-white border border-pink-200 rounded-lg shadow-md p-4 text-center">
-            <img src="https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Special" alt="BB Cream Oferta" class="w-full h-48 object-cover rounded mb-4" />
-            <h3 class="text-lg font-semibold text-gray-800">BB Cream Bella - Oferta</h3>
-            <p class="text-gray-600 line-through text-sm">Normal: $29.99</p>
-            <p class="text-pink-600 font-bold text-lg">$22.99</p>
-            <div class="mt-3 flex flex-col space-y-2">
-              <input type="number" placeholder="1" value="1" min="1" class="w-20 mx-auto border border-gray-300 rounded px-2 py-1 text-center" />
-              <button onclick="addToCart({...{id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
-              <button onclick="buyNow({...{id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
-              <button onclick="toggleFavorite({...{id:1,name:'BB Cream Bella',price:22.99,image:'https://placehold.co/400x400/fbcfe8/ffffff?text=BB+Cream'})" class="text-red-500 hover:text-red-700">❤️ Eliminar de Favoritos</button>
-            </div>
-          </div>
-          <div class="bg-white border border-pink-200 rounded-lg shadow-md p-4 text-center">
-            <img src="https://placehold.co/400x400/fc466b/ffffff?text=Lipstick+Sale" alt="Labial Mate Oferta" class="w-full h-48 object-cover rounded mb-4" />
-            <h3 class="text-lg font-semibold text-gray-800">Labial Mate Bella - Oferta</h3>
-            <p class="text-gray-600 line-through text-sm">Normal: $19.99</p>
-            <p class="text-pink-600 font-bold text-lg">$14.99</p>
-            <div class="mt-3 flex flex-col space-y-2">
-              <input type="number" placeholder="1" value="1" min="1" class="w-20 mx-auto border border-gray-300 rounded px-2 py-1 text-center" />
-              <button onclick="addToCart({...{id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
-              <button onclick="buyNow({...{id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
-              <button onclick="toggleFavorite({...{id:2,name:'Labial Mate Bella',price:14.99,image:'https://placehold.co/400x400/fc466b/ffffff?text=Lipstick'})" class="text-red-500 hover:text-red-700">❤️ Eliminar de Favoritos</button>
-            </div>
-          </div>
-          <div class="bg-white border border-pink-200 rounded-lg shadow-md p-4 text-center">
-            <img src="https://placehold.co/400x400/a3a3a3/ffffff?text=Eyes+Deals" alt="Paleta Oferta" class="w-full h-48 object-cover rounded mb-4" />
-            <h3 class="text-lg font-semibold text-gray-800">Paleta de Sombras - Oferta</h3>
-            <p class="text-gray-600 line-through text-sm">Normal: $39.99</p>
-            <p class="text-pink-600 font-bold text-lg">$29.99</p>
-            <div class="mt-3 flex flex-col space-y-2">
-              <input type="number" placeholder="1" value="1" min="1" class="w-20 mx-auto border border-gray-300 rounded px-2 py-1 text-center" />
-              <button onclick="addToCart({...{id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
-              <button onclick="buyNow({...{id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
-              <button onclick="toggleFavorite({...{id:3,name:'Paleta de Sombras Bella',price:29.99,image:'https://placehold.co/400x400/a3a3a3/ffffff?text=Eyeshadow'})" class="text-red-500 hover:text-red-700">❤️ Eliminar de Favoritos</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Saldo -->
-    <section id="saldo" class="py-20 bg-white hidden">
-      <div class="max-w-6xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold text-gray-900 mb-6">Tu Saldo Disponible</h2>
-        <div class="bg-pink-50 p-10 rounded-xl shadow-md inline-block">
-          <p class="text-xl text-gray-600 mb-2">Saldo disponible:</p>
-          <p id="balance-display" class="text-3xl font-bold text-pink-600">$500.00</p>
-          <div class="mt-6 space-x-4">
-            <button onclick="addBalance(50)" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg">Recargar $50</button>
-            <button onclick="addBalance(100)" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg">Recargar $100</button>
-            <button onclick="simulateCardReload()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg mt-4">Recargar desde Tarjeta</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-pink-50 py-8 text-center text-gray-600">
-    <div class="max-w-6xl mx-auto px-4">
-      <p class="text-sm">&copy; 2025 Bella Makeup - Diseñado por Yeimi</p>
-      <div class="mt-4 flex justify-center space-x-4">
-        <a href="#" class="text-pink-600 hover:text-pink-800 transition">Instagram</a> 
-        <a href="#" class="text-pink-600 hover:text-pink-800 transition">Facebook</a>
-        <a href="#" class="text-pink-600 hover:text-pink-800 transition">TikTok</a>
+      <div class="friend-card" 
+           data-name="Lucía" 
+           data-msg="¡Lucía! Tu abrazo es mi lugar favorito en el mundo. Inteligente, amorosa y llena de sabiduría. ¡Te admiro! 🌸"
+           data-img="https://via.placeholder.com/100/ffd180/ffffff?text=L">
+        <span class="heart">💗</span>
+        <h2>Lucía</h2>
+        <p>Alma tranquila</p>
       </div>
     </div>
-  </footer>
 
-  <!-- Scripts -->
+    <footer>
+      <p>Hecho con cariño 💕 | Para las 4 amigas que iluminan mi vida</p>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="messageModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <img id="modalImg" style="display:none;">
+      <p id="modalMessage"></p>
+    </div>
+  </div>
+
   <script>
-    let cart = [];
-    let balance = parseFloat(localStorage.getItem("saldo")) || 500.00;
-    let favorites = JSON.parse(localStorage.getItem("favoritos")) || [];
-
-    function showSection(sectionId) {
-      document.querySelectorAll("main > section").forEach(sec => sec.classList.add("hidden"));
-      document.getElementById(sectionId).classList.remove("hidden");
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById("toast");
-      toast.textContent = message;
-      toast.classList.remove("hidden");
-      setTimeout(() => {
-        toast.classList.add("hidden");
-      }, 2500);
-    }
-
-    function updateBalanceDisplay() {
-      const balanceDisplay = document.getElementById("balance-display");
-      if (balanceDisplay) balanceDisplay.textContent = `$${balance.toFixed(2)}`;
-    }
-
-    function addBalance(amount) {
-      balance += amount;
-      updateBalanceDisplay();
-      localStorage.setItem("saldo", balance.toFixed(2));
-      showToast(`¡Se recargaron $${amount} exitosamente!`);
-    }
-
-    function simulateCardReload() {
-      const cardAmount = 200.00;
-      balance += cardAmount;
-      updateBalanceDisplay();
-      localStorage.setItem("saldo", balance.toFixed(2));
-      showToast(`¡Se recargaron $${cardAmount} desde tu tarjeta!`);
-    }
-
-    function toggleFavorite(product) {
-      const index = favorites.findIndex(fav => fav.id === product.id);
-      if (index > -1) {
-        favorites.splice(index, 1);
-        showToast(`${product.name} eliminado de favoritos`);
-      } else {
-        favorites.push(product);
-        showToast(`${product.name} añadido a favoritos`);
+    // Crear flores en el jardín (fondo)
+    function createGardenFlowers() {
+      const colors = ['#ff6b9d', '#ffb3c6', '#a0d8ff', '#c9b3ff', '#ffd180'];
+      for (let i = 0; i < 25; i++) {
+        const flower = document.createElement('div');
+        flower.className = 'flower';
+        
+        // Posición aleatoria en la parte inferior (sobre el pasto)
+        const left = Math.random() * 100;
+        const bottomOffset = 5 + Math.random() * 25; // entre 5% y 30% desde abajo
+        flower.style.left = `${left}vw`;
+        flower.style.bottom = `${bottomOffset}%`;
+        
+        // Color aleatorio
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        flower.style.setProperty('--flower-color', color);
+        
+        // Aplicar color con CSS personalizado
+        const style = document.createElement('style');
+        style.innerHTML = `
+          .flower:nth-of-type(${i + 1})::after {
+            background: ${color};
+            box-shadow:
+              20px 0 0 0 ${lighten(color, 20)},
+              -20px 0 0 0 ${lighten(color, 20)},
+              0 20px 0 0 ${lighten(color, 40)},
+              0 -20px 0 0 ${lighten(color, 40)};
+          }
+        `;
+        document.head.appendChild(style);
+        
+        document.body.appendChild(flower);
       }
-      localStorage.setItem("favoritos", JSON.stringify(favorites));
-      loadFavorites();
     }
 
-    function isInFavorites(product) {
-      return favorites.some(fav => fav.id === product.id);
+    // Función auxiliar para clarificar colores (simple)
+    function lighten(hex, percent) {
+      let r = parseInt(hex.slice(1, 3), 16);
+      let g = parseInt(hex.slice(3, 5), 16);
+      let b = parseInt(hex.slice(5, 7), 16);
+      
+      r = Math.min(255, r + (255 - r) * percent / 100);
+      g = Math.min(255, g + (255 - g) * percent / 100);
+      b = Math.min(255, b + (255 - b) * percent / 100);
+      
+      return `#${Math.round(r).toString(16).padStart(2, '0')}${Math.round(g).toString(16).padStart(2, '0')}${Math.round(b).toString(16).padStart(2, '0')}`;
     }
 
-    function loadFavorites() {
-      const favContainer = document.getElementById("favorites-content");
-      if (!favContainer) return;
-      favContainer.innerHTML = "";
-      if (favorites.length === 0) {
-        favContainer.innerHTML = `
-          <div class="col-span-3 bg-pink-50 p-10 rounded-xl shadow-md mx-auto">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 inline-block text-pink-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-            </svg>
-            <p class="text-gray-600">Aquí aparecerán tus productos favoritos.</p>
-            <p class="text-sm text-gray-400 mt-2">Empieza a marcar productos como favoritos desde la tienda</p>
-          </div>`;
+    // Lluvia de pétalos
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.innerHTML = '🌸';
+      petal.className = 'petal';
+      petal.style.left = `${Math.random() * 100}vw`;
+      petal.style.fontSize = `${14 + Math.random() * 10}px`;
+      petal.style.opacity = 0.6 + Math.random() * 0.3;
+      petal.style.animationDuration = `${5 + Math.random() * 6}s`;
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 11000);
+    }
+
+    // Iniciar todo
+    window.onload = () => {
+      createGardenFlowers();
+      setInterval(createPetal, 500);
+    };
+
+    // === Resto de funcionalidad (música, modal, etc.) ===
+    const musicBtn = document.getElementById('musicToggle');
+    const audio = document.getElementById('backgroundMusic');
+    let isPlaying = false;
+
+    musicBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        audio.pause();
+        musicBtn.textContent = '♪';
+        isPlaying = false;
       } else {
-        favorites.forEach(p => {
-          favContainer.innerHTML += `
-            <div class="border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
-              <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover" />
-              <div class="p-4">
-                <h3 class="text-xl font-semibold text-gray-800">${p.name}</h3>
-                <p class="text-gray-600 mt-2">$${p.price.toFixed(2)}</p>
-                <button onclick="toggleFavorite(${JSON.stringify(p)})" class="mt-2 text-red-500 hover:text-red-700">Eliminar de Favoritos</button>
-              </div>
-            </div>`;
+        audio.play().then(() => {
+          musicBtn.textContent = '⏸';
+          isPlaying = true;
+        }).catch(e => {
+          alert('¡Toca de nuevo para activar la música! 🎶');
         });
       }
-    }
+    });
 
-    function addToCart(product) {
-      const qtyInput = document.querySelector(`#qty-${product.id}`) || { value: 1 };
-      const quantity = parseInt(qtyInput.value);
-
-      if (!quantity || quantity <= 0) return;
-
-      const existingItem = cart.find(item => item.id === product.id);
-      if (existingItem) {
-        existingItem.quantity += quantity;
+    function openModal(name, msg, imgUrl) {
+      document.getElementById('modalTitle').textContent = `💌 Para ${name}`;
+      document.getElementById('modalMessage').textContent = msg;
+      const imgEl = document.getElementById('modalImg');
+      if (imgUrl && imgUrl.trim() !== "") {
+        imgEl.src = imgUrl;
+        imgEl.style.display = 'block';
       } else {
-        cart.push({ ...product, quantity });
+        imgEl.style.display = 'none';
       }
-
-      updateCartDisplay();
-      showToast(`¡${product.name} agregado(s) al carrito!`);
+      document.getElementById('messageModal').style.display = 'block';
     }
 
-    function buyNow(product) {
-      const qtyInput = document.querySelector(`#qty-${product.id}`) || { value: 1 };
-      const quantity = parseInt(qtyInput.value);
-      const total = product.price * quantity;
-
-      if (total > balance) {
-        showToast("Saldo insuficiente.");
-        return;
-      }
-
-      balance -= total;
-      updateBalanceDisplay();
-      localStorage.setItem("saldo", balance.toFixed(2));
-
-      const purchase = {
-        date: new Date().toLocaleString(),
-        item: product,
-        quantity,
-        total
-      };
-
-      const history = JSON.parse(localStorage.getItem("historialCompras") || "[]");
-      history.unshift(purchase);
-      localStorage.setItem("historialCompras", JSON.stringify(history));
-      showToast(`Compra realizada por $${total.toFixed(2)}. Nuevo saldo: $${balance.toFixed(2)}`);
+    function closeModal() {
+      document.getElementById('messageModal').style.display = 'none';
     }
 
-    function updateCartDisplay() {
-      const cartContent = document.getElementById("cart-content");
-      const cartSummary = document.getElementById("cart-summary");
-      const totalDisplay = document.getElementById("total-display");
-      cartContent.innerHTML = "";
-
-      if (cart.length === 0) {
-        cartContent.innerHTML = `
-          <div class="text-center py-10">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 inline-block text-pink-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5M7 13L5 5m2 8a2 2 0 10-.284-3.993A2 2 0 007 13z"/>
-            </svg>
-            <p class="text-lg text-gray-500">Tu carrito está vacío</p>
-          </div>`;
-        cartSummary.classList.add("hidden");
-        return;
-      }
-
-      cart.forEach(item => {
-        cartContent.innerHTML += `
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b last:border-b-0">
-            <div class="flex items-center">
-              <img src="${item.image}" alt="${item.name}" class="w-12 h-12 rounded object-cover" />
-              <div class="ml-4">
-                <h4 class="font-semibold">${item.name}</h4>
-                <p class="text-xs text-gray-500">$${item.price.toFixed(2)} x ${item.quantity}</p>
-              </div>
-            </div>
-            <div class="mt-3 sm:mt-0 flex items-center space-x-2">
-              <button onclick="decreaseQuantity(${item.id})" class="text-gray-600 hover:text-pink-600">-</button>
-              <span>${item.quantity}</span>
-              <button onclick="increaseQuantity(${item.id})" class="text-gray-600 hover:text-pink-600">+</button>
-              <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 ml-4">Eliminar</button>
-            </div>
-          </div>`;
-      });
-
-      cartSummary.classList.remove("hidden");
-      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
-      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-      totalDisplay.textContent = `${totalItems} art. - $${total}`;
-    }
-
-    function removeFromCart(id) {
-      cart = cart.filter(item => item.id !== id);
-      updateCartDisplay();
-    }
-
-    function decreaseQuantity(id) {
-      const item = cart.find(i => i.id === id);
-      if (item && item.quantity > 1) item.quantity--;
-      updateCartDisplay();
-    }
-
-    function increaseQuantity(id) {
-      const item = cart.find(i => i.id === id);
-      if (item) item.quantity++;
-      updateCartDisplay();
-    }
-
-    function clearCart() {
-      cart = [];
-      updateCartDisplay();
-    }
-
-    function handleBuy() {
-      const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
-      if (parseFloat(total) === 0) return showToast("Tu carrito está vacío");
-
-      if (parseFloat(total) > balance) return showToast("Saldo insuficiente");
-
-      balance -= parseFloat(total);
-      localStorage.setItem("saldo", balance.toFixed(2));
-      showToast(`Compra realizada por $${total}. Nuevo saldo: $${balance.toFixed(2)}`);
-      cart = [];
-      updateCartDisplay();
-      updateBalanceDisplay();
-    }
-
-    function populateProducts() {
-      const productList = document.getElementById("product-list");
-      productList.innerHTML = "";
-      products.forEach(p => {
-        const isFav = isInFavorites(p) ? 'text-red-500' : 'text-gray-400';
-        const heartSVG = isInFavorites(p)
-          ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5S4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3s3.58.58 4.7 1.86L12 21.35z"/></svg>`
-          : `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>`;
-
-        productList.innerHTML += `
-          <div class="border rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
-            <img src="${p.image}" alt="${p.name}" class="w-full h-48 object-cover" />
-            <div class="p-4">
-              <h3 class="text-xl font-semibold text-gray-800">${p.name}</h3>
-              <p class="text-gray-600 mt-2">$${p.price.toFixed(2)}</p>
-              <div class="mt-3 flex justify-between items-center">
-                <input type="number" placeholder="1" min="1" id="qty-${p.id}" class="w-16 border border-gray-300 rounded px-2 py-1 text-center" />
-                <div class="flex flex-col space-y-2">
-                  <button onclick="addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')}" class="bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded text-sm">Agregar al Carrito</button>
-                  <button onclick="buyNow(${JSON.stringify(p).replace(/"/g, '&quot;')}" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded text-sm">Comprar Ahora</button>
-                  <button onclick="toggleFavorite(${JSON.stringify(p).replace(/"/g, '&quot;')}" class="px-2 py-2 rounded text-gray-400 hover:${isFav.includes('red') ? 'text-red-600' : 'text-gray-400'}">${heartSVG} Añadir a Favoritos</button>
-                </div>
-              </div>
-            </div>
-          </div>`;
-      });
-    }
-
-    window.onload = () => {
-      showSection("inicio");
-      updateBalanceDisplay();
-      populateProducts();
-      loadFavorites();
-      updateCartDisplay();
+    document.getElementById('closeModal').onclick = closeModal;
+    window.onclick = function(event) {
+      if (event.target === document.getElementById('messageModal')) closeModal();
     };
-  </script>
-</body>
-</html>
+
+    document.querySelectorAll('.friend-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const name = card.getAttribute('data-name');
+        const msg = card.getAttribute('data-msg');
+        const img = card.getAttribute('data-img') || '';
+        openModal(name, msg, img);
+      });
+    });
   </script>
 </body>
 </html>
